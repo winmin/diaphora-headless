@@ -1,0 +1,14 @@
+--- a/diaphora_ida.py
++++ b/diaphora_ida.py
+@@ -3309,8 +3309,8 @@
+   def save_callgraph(self, primes, all_primes, md5sum):
+     cur = self.db_cursor()
+     try:
+       sql = "insert into main.program (callgraph_primes, callgraph_all_primes, processor, md5sum) values (?, ?, ?, ?)"
+-      proc = idaapi.get_idp_name()
+-      if BADADDR == 0xFFFFFFFFFFFFFFFF:
++      proc = idaapi.get_idp_name() or ida_ida.inf_get_procname() or "unknown"
++      if BADADDR == 0xFFFFFFFFFFFFFFFF and not proc.endswith("64"):
+         proc += "64"
+       cur.execute(sql, (primes, all_primes, proc, md5sum))
+     finally:

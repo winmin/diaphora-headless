@@ -1,0 +1,25 @@
+[project]
+name = "diaphora-headless"
+version = "0.1.0"
+description = "Headless binary diffing CLI using Diaphora and Hex-Rays IDALib"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "idapro>=0.0.7",
+    "cdifflib",
+    "scikit-learn",
+    "joblib",
+    "pandas",
+    "numpy",
+]
+
+[project.scripts]
+diaphora-headless = "diaphora_headless:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["diaphora_headless"]
